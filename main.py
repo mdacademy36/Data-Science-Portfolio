@@ -303,11 +303,27 @@ if menu == "Home":
         - Model Evaluation
         """)
 
-    st.info(
-        "Navigate to Used Car Price Prediction "
-        "to explore the dataset and prediction interface."
-    )
-
+    st.markdown("""
+    <div style="
+        background-color: #E8F3F5;
+        border-left: 5px solid #1677A5;
+        border-radius: 8px;
+        padding: 18px 22px;
+        margin-top: 15px;
+    ">
+        <p style="
+            color: #123C43;
+            font-size: 15px;
+            font-weight: 600;
+            line-height: 1.7;
+            margin: 0;
+            opacity: 1;
+        ">
+            Navigate to Used Car Price Prediction to explore
+            the dataset and prediction interface.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
 
 # ==========================================
 # PAGE ROUTING
