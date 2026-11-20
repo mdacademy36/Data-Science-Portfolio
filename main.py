@@ -1,6 +1,6 @@
 
 import streamlit as st
-import textwrap
+
 st.set_page_config(
     page_title="Used Car Price Prediction | MDacademy36",
     page_icon="🚗",
@@ -11,6 +11,7 @@ st.set_page_config(
 import used_car_price
 import about
 import contact
+
 
 # ==========================================
 # CUSTOM CSS
@@ -25,13 +26,16 @@ st.markdown("""
 }
 
 /* Main content text */
-.stApp,
-.stMarkdown p,
-.stMarkdown li {
-    color: #37474F !important;
+.stApp {
+    color: #37474F;
 }
 
-/* Main content */
+.stMarkdown p,
+.stMarkdown li {
+    color: #37474F;
+}
+
+/* Main content layout */
 .block-container {
     padding-top: 2rem;
     padding-bottom: 3rem;
@@ -43,7 +47,7 @@ st.markdown("""
 }
 
 [data-testid="stSidebar"] * {
-    color: #FFFFFF !important;
+    color: #FFFFFF;
 }
 
 /* Sidebar radio */
@@ -87,7 +91,7 @@ h1, h2, h3 {
 .stButton > button,
 .stFormSubmitButton > button {
     background-color: #1677A5;
-    color: white;
+    color: #FFFFFF !important;
     border-radius: 8px;
     border: none;
     padding: 10px 22px;
@@ -97,7 +101,7 @@ h1, h2, h3 {
 .stButton > button:hover,
 .stFormSubmitButton > button:hover {
     background-color: #125D82;
-    color: white;
+    color: #FFFFFF !important;
 }
 
 /* Dataframe */
@@ -118,7 +122,7 @@ hr {
     padding: 25px 0 10px 0;
 }
 
-/* Sidebar text color correction */
+/* Sidebar text */
 [data-testid="stSidebar"] .stMarkdown p,
 [data-testid="stSidebar"] .stMarkdown span {
     color: #D0E4E6 !important;
@@ -129,7 +133,6 @@ hr {
     color: #FFFFFF !important;
 }
 
-/* Sidebar navigation heading */
 [data-testid="stSidebar"] h3 {
     color: #FFFFFF !important;
 }
@@ -139,21 +142,27 @@ hr {
     color: #B8CDD0 !important;
 }
 
-/* Info box text visibility */
-[data-testid="stAlert"] p {
-    color: #123C43 !important;
-    font-weight: 500 !important;
+/* Streamlit success notification */
+[data-testid="stAlert"][kind="success"] {
+    background-color: #D1F0DC !important;
+    border: 1px solid #A8DDBB !important;
 }
 
-[data-testid="stAlert"] {
+[data-testid="stAlert"][kind="success"] p,
+[data-testid="stAlert"][kind="success"] span,
+[data-testid="stAlert"][kind="success"] div {
     color: #123C43 !important;
+    -webkit-text-fill-color: #123C43 !important;
+    opacity: 1 !important;
+    font-weight: 600 !important;
 }
-/* Hide Streamlit Header */
+
+/* Hide Streamlit header */
 header[data-testid="stHeader"] {
     display: none !important;
 }
 
-/* Hide Streamlit Toolbar */
+/* Hide Streamlit toolbar */
 div[data-testid="stToolbar"] {
     visibility: hidden !important;
     height: 0 !important;
@@ -163,8 +172,14 @@ div[data-testid="stToolbar"] {
 div[data-testid="stDecoration"] {
     display: none !important;
 }
+
 </style>
 """, unsafe_allow_html=True)
+
+
+# ==========================================
+
+# ==========================================
 
 # ==========================================
 # SIDEBAR BRANDING
@@ -172,7 +187,7 @@ div[data-testid="stDecoration"] {
 
 with st.sidebar:
 
-    st.markdown("""
+    st.html("""
     <div style="
         padding: 18px 10px;
         text-align: center;
@@ -180,19 +195,20 @@ with st.sidebar:
         border-radius: 12px;
         margin-bottom: 25px;
     ">
-        <h2 style="color:white; margin:0;">
-            MD<span style="color:#64B5F6;">ACADEMY36</span>
+        <h2 style="color: white; margin: 0;">
+            MD<span style="color: #64B5F6;">ACADEMY36</span>
         </h2>
+
         <p style="
-            color:#D0E4E6;
-            font-size:11px;
-            letter-spacing:2px;
-            margin:5px 0 0 0;
+            color: #D0E4E6;
+            font-size: 11px;
+            letter-spacing: 2px;
+            margin: 5px 0 0 0;
         ">
             DATA SCIENCE PORTFOLIO
         </p>
     </div>
-    """, unsafe_allow_html=True)
+    """)
 
     st.markdown("### Navigation")
 
@@ -212,6 +228,7 @@ with st.sidebar:
     st.caption("MACHINE LEARNING PROJECT")
     st.caption("Used Car Price Prediction")
     st.caption("Developed by MDacademy36")
+
 
 
 # ==========================================
@@ -253,7 +270,6 @@ if menu == "Home":
         </p>
     </div>
     """)
-
 
     st.subheader("Project Overview")
 
@@ -312,7 +328,8 @@ if menu == "Home":
         margin-top: 15px;
     ">
         <p style="
-            color: #123C43;
+            color: #123C43 !important;
+            -webkit-text-fill-color: #123C43 !important;
             font-size: 15px;
             font-weight: 600;
             line-height: 1.7;
@@ -325,23 +342,28 @@ if menu == "Home":
     </div>
     """, unsafe_allow_html=True)
 
+
 # ==========================================
 # PAGE ROUTING
 # ==========================================
 
 elif menu == "Used Car Price Prediction":
+
     used_car_price.app()
 
 elif menu == "About":
+
     about.app()
 
 elif menu == "Contact":
+
     contact.app()
 
 
 # ==========================================
 # FOOTER
 # ==========================================
+
 st.markdown("""
 <div class="footer">
     © 2024 MDacademy36 |
@@ -353,4 +375,3 @@ st.markdown("""
     <strong>n8n Automation</strong>
 </div>
 """, unsafe_allow_html=True)
-
