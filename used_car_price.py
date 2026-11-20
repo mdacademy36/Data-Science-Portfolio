@@ -574,21 +574,20 @@ def app():
         )
 
     # ======================================
+    
+    # ======================================
     # PREDICTION RESULT
     # ======================================
 
     if submit:
 
         if levy == "Yes" and levy_amount <= 0:
-
             st.error("Levy amount must be greater than zero.")
 
         elif engine_volume <= 0:
-
             st.error("Engine volume must be greater than zero.")
 
         else:
-
             try:
 
                 model = load_model()
@@ -612,7 +611,6 @@ def app():
                     ),
 
                     "Prod. year": prod_year,
-
                     "Mileage": mileage_value,
 
                     "Levy": (
@@ -638,8 +636,26 @@ def app():
                     input_data
                 )
 
-                # Clean prediction result display
-                st.success("Prediction completed successfully!")
+                # Prediction success notification
+                st.markdown("""
+                <div style="
+                    background-color: #D1F0DC;
+                    border: 1px solid #A8DDBB;
+                    border-radius: 8px;
+                    padding: 16px;
+                    margin: 12px 0;
+                ">
+                    <p style="
+                        color: #123C43 !important;
+                        font-family: Arial, sans-serif;
+                        font-size: 16px;
+                        font-weight: 600;
+                        margin: 0;
+                    ">
+                        Prediction completed successfully!
+                    </p>
+                </div>
+                """, unsafe_allow_html=True)
 
                 st.metric(
                     label="Estimated Vehicle Price",
@@ -658,7 +674,6 @@ def app():
                     )
 
             except Exception as error:
-
                 st.error(f"Prediction failed: {error}")
 
     st.divider()
